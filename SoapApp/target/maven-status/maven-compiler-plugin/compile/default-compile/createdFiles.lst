@@ -1,0 +1,7 @@
+trng/soap/service/loan/LoanService_Service.class
+trng/soap/service/loan/package-info.class
+trng/soap/service/loan/ProcessLoanResponse.class
+trng/soap/service/loan/ObjectFactory.class
+trng/soap/service/loan/ProcessLoanRequest.class
+trng/soap/service/loan/LoanService.class
+trng/soap/service/loan/LoanServiceImpl.class

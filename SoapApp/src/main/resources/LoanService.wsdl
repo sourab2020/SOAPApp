@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.trng.org/LoanService/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="LoanService" targetNamespace="http://www.trng.org/LoanService/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.trng.org/LoanService/">
+      <xsd:element name="processLoanRequest"
+      	type="tns:processLoanRequest">
+      </xsd:element>
+      <xsd:element name="processLoanResponse"
+      	type="tns:processLoanResponse">
+      </xsd:element>
+
+      <xsd:complexType name="processLoanRequest">
+      	<xsd:sequence>
+      		<xsd:element name="Amount" type="xsd:double"></xsd:element>
+      		<xsd:element name="Tenure" type="xsd:boolean"></xsd:element>
+      		<xsd:element name="DOB" type="xsd:date"></xsd:element>
+      		<xsd:element name="Gender" type="xsd:string"></xsd:element>
+      		<xsd:element name="Salary" type="xsd:double"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+    
+      <xsd:complexType name="processLoanResponse">
+      	<xsd:sequence>
+      		<xsd:element name="eligibilitymessage"
+      			type="xsd:string">
+      		</xsd:element>
+      		<xsd:element name="eligibilityCode" type="xsd:string"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="processLoanRequest">
+    <wsdl:part element="tns:processLoanRequest" name="request" />
+  </wsdl:message>
+  <wsdl:message name="processLoanResponse">
+    <wsdl:part element="tns:processLoanResponse" name="response"/>
+  </wsdl:message>
+  <wsdl:portType name="LoanService">
+    <wsdl:operation name="processLoan">
+      <wsdl:input message="tns:processLoanRequest"/>
+      <wsdl:output message="tns:processLoanResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="LoanServiceSOAP" type="tns:LoanService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="processLoan">
+      <soap:operation soapAction="http://www.trng.org/LoanService/processLoan"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="LoanService">
+    <wsdl:port binding="tns:LoanServiceSOAP" name="LoanServiceSOAP">
+      <soap:address location="http://www.example.org/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
